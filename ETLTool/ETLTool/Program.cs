@@ -14,8 +14,7 @@
             private static void Main(string[] args)
             {
                 var builder = new ConfigurationBuilder()
-                  .SetBasePath(Environment.CurrentDirectory)
-                  .AddJsonFile($"appsettings.{"cn"}.json", true);
+                  .AddJsonFile("appsettings.cn.json", true);
                 Configuration = builder.Build();
                 var servicesProvider = BuildDi();
                 var migrateService = servicesProvider.GetRequiredService<MigrateService>();
@@ -28,7 +27,7 @@
             {
                 var services = new ServiceCollection();
                 services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
-                services.Configure<TestModel>(Configuration.GetSection("TestModel"));
+                services.Configure<Endpoint>(Configuration.GetSection("Endpoint"));
                 services.AddSingleton<ILoggerFactory, LoggerFactory>();
                 services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
                 services.AddLogging((builder) => builder.SetMinimumLevel(LogLevel.Trace));

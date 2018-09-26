@@ -1,4 +1,6 @@
-﻿namespace ETLTool.DataModel
+﻿using System.Collections.Generic;
+
+namespace ETLTool.DataModel
 {
     public class WordRoot
     {
@@ -6,8 +8,6 @@
 
         public string wordRootMeaning { set; get; }
 
-        public string relatedWord { set; get; }
-
-        public string releateWordMeaning { set; get; }
+        public List<RelatedWord> relatedWord { set; get; }
     }
 }
