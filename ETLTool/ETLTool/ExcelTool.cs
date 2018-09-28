@@ -30,12 +30,9 @@ namespace ETLTool
                             ICellStyle cellstyle = workbook.CreateCellStyle();
                             cellstyle.VerticalAlignment = VerticalAlignment.Center;
                             cellstyle.Alignment = HorizontalAlignment.Center;
-
-                            //CellRangeAddress m_region = new CellRangeAddress(Staticflag.flagCount-1, Staticflag.flagCount-1 + relatedWordCount, 0, 0);  //合并0列的n--n+2行
-
-                            //sheet.AddMergedRegion(new CellRangeAddress(0, 0, 0, 0));
+                             sheet.AddMergedRegion(new CellRangeAddress(Staticflag.flagCount+1, Staticflag.flagCount + relatedWordCount, 0, 0));
                             var cell = row2.CreateCell(0);
-                            //cell.CellStyle = cellstyle;
+                            cell.CellStyle = cellstyle;
                             cell.SetCellValue(wordRoot.wordRoot + wordRoot.wordRootMeaning);
 
 
@@ -44,8 +41,8 @@ namespace ETLTool
                         
 
                         row2.CreateCell(1).SetCellValue(relatedWord.relatedWord);
-                        row2.CreateCell(2).SetCellValue(relatedWord.releateWordMeaning);
-                        sheet.AutoSizeColumn(0);
+                        var relatedWordCell = row2.CreateCell(2);
+                        relatedWordCell.SetCellValue(relatedWord.releateWordMeaning);
                         workbook.Write(fs);
                         _logger.LogError("write to excel " + wordRoot.wordRoot);
                     }

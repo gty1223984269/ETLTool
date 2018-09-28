@@ -5,9 +5,9 @@ C:\person\ETLTool\ETLTool\ETLTool\bin\Debug\netcoreapp2.0\ETLTool.runtimeconfig.
 C:\person\ETLTool\ETLTool\ETLTool\bin\Debug\netcoreapp2.0\ETLTool.runtimeconfig.dev.json
 C:\person\ETLTool\ETLTool\ETLTool\bin\Debug\netcoreapp2.0\ETLTool.dll
 C:\person\ETLTool\ETLTool\ETLTool\bin\Debug\netcoreapp2.0\ETLTool.pdb
+C:\person\ETLTool\ETLTool\ETLTool\obj\Debug\netcoreapp2.0\ETLTool.csprojAssemblyReference.cache
 C:\person\ETLTool\ETLTool\ETLTool\obj\Debug\netcoreapp2.0\ETLTool.csproj.CoreCompileInputs.cache
 C:\person\ETLTool\ETLTool\ETLTool\obj\Debug\netcoreapp2.0\ETLTool.AssemblyInfoInputs.cache
 C:\person\ETLTool\ETLTool\ETLTool\obj\Debug\netcoreapp2.0\ETLTool.AssemblyInfo.cs
 C:\person\ETLTool\ETLTool\ETLTool\obj\Debug\netcoreapp2.0\ETLTool.dll
 C:\person\ETLTool\ETLTool\ETLTool\obj\Debug\netcoreapp2.0\ETLTool.pdb
-C:\person\ETLTool\ETLTool\ETLTool\obj\Debug\netcoreapp2.0\ETLTool.csprojResolveAssemblyReference.cache

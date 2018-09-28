@@ -37,15 +37,25 @@ namespace ETLTool
             var newFile = @"C:\temp\gDict.xlsx";
             IWorkbook workbook = new XSSFWorkbook();
             ISheet sheet = workbook.CreateSheet("Sheet1");
-            //sheet.AddMergedRegion(new CellRangeAddress(0, 0, 0, 0));
-
             using (var fs = new FileStream(newFile, FileMode.Create, FileAccess.Write))
             {
+                ICellStyle cellstyle = workbook.CreateCellStyle();
+                cellstyle.VerticalAlignment = VerticalAlignment.Center;
+                cellstyle.Alignment = HorizontalAlignment.Center;
+                sheet.AutoSizeColumn(0);
+                sheet.AutoSizeColumn(1);
+                sheet.SetColumnWidth(2, 200);
                 IRow row = sheet.CreateRow(0);
-                row.CreateCell(0).SetCellValue("wordRoot");
-                //row.CreateCell(1).SetCellValue("wordRootMeaning");
-                row.CreateCell(2).SetCellValue("relatedWord");
-                row.CreateCell(3).SetCellValue("releateWordMeaning");
+                var wordCell = row.CreateCell(0);
+                wordCell.SetCellValue("wordRoot");
+                wordCell.CellStyle = cellstyle;
+
+                var relatedWordCell = row.CreateCell(1);
+                relatedWordCell.SetCellValue("relatedWord");
+                relatedWordCell.CellStyle = cellstyle;
+                var relatedWordMeaningCell = row.CreateCell(2);
+                relatedWordMeaningCell.SetCellValue("releateWordMeaning");
+                relatedWordMeaningCell.CellStyle = cellstyle;
                 sheet.AutoSizeColumn(0);
                 workbook.Write(fs);
             }

@@ -42,7 +42,7 @@ namespace ETLTool
                         continue;
                     }
 
-                    _wordrootMeaning = co.Descendants("p").Select(a => a.InnerText).ToList()[0].Replace("表示", "").Replace("&nbsp", "").Replace(";", "");
+                    _wordrootMeaning = co.Descendants("p").Select(a => a.InnerText).ToList()[0].Replace("&nbsp", "").Replace(";", "");
 
                     var list = co.Descendants("li").Select(a => a.InnerText.Replace(";", "").Replace("&nbsp", "").Replace("\t", "").Replace("\n", "")).ToList();
 
@@ -77,7 +77,7 @@ namespace ETLTool
 
                 if (arrayStr.Length > 1)
                 {
-                    relatedWord.relatedWord = arrayStr[0];
+                    relatedWord.relatedWord = arrayStr[0].Replace("[]","");
                     relatedWord.releateWordMeaning = arrayStr[1];
                 }
                 else
