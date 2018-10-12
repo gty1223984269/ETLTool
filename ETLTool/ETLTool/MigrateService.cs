@@ -1,4 +1,5 @@
 ﻿using ETLTool.DataModel;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NPOI.SS.UserModel;
@@ -30,10 +31,34 @@ namespace ETLTool
             _wordRootsUrl = endpoint.Value.wordRootsUrl;
         }
 
-        public void Migrate()
+        public void Migrate(Repository repository)
         {
 
-          
+            string sql1 =
+@"INSERT INTO[dbo].[related_words]
+           ([created_date_time_utc]
+           ,[created_by]
+           ,[updated_date_time_utc]
+           ,[updated_by]
+           ,[is_active]
+           ,[root_id]
+           ,[word]
+           ,[chinese_meaning]
+           ,[remember_logic])
+     VALUES
+           (<created_date_time_utc, datetime2(7),>
+           ,<created_by, nvarchar(64),>
+           ,<updated_date_time_utc, datetime2(7),>
+           ,<updated_by, nvarchar(64),>
+           ,<is_active, bit,>
+           ,<root_id, bigint,>
+           ,<word, nvarchar(100),>
+           ,<chinese_meaning, nvarchar(300),>
+           ,<remember_logic, nvarchar(400),>)'";
+
+           
+
+
             var newFile = @"C:\temp\gDict.xlsx";
             IWorkbook workbook = new XSSFWorkbook();
             ISheet sheet = workbook.CreateSheet("Sheet1");
@@ -82,7 +107,10 @@ namespace ETLTool
                         var relatedWordResult = HttpTool.GetHttpResponse(_relatedWordsUrl + word, 50000);
 
                         HtmlParser.ParseHtmlDataContent(relatedWordResult, out List<WordRoot> outRelatedWordList, word);
-                        ExcelTool.strat(outRelatedWordList, _logger, sheet, workbook, newFile);
+
+                       
+                        repository.Add(outRelatedWordList);
+                        //ExcelTool.strat(outRelatedWordList, _logger, sheet, workbook, newFile);
                         _logger.LogError(word + "##" + k++);
                     }
 

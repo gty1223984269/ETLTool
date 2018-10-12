@@ -18,7 +18,8 @@
                 Configuration = builder.Build();
                 var servicesProvider = BuildDi();
                 var migrateService = servicesProvider.GetRequiredService<MigrateService>();
-                migrateService.Migrate();
+                var repositoryService = servicesProvider.GetRequiredService<Repository>();
+                migrateService.Migrate(repositoryService);
             }
 
             public static IConfiguration Configuration { get; set; }
@@ -32,6 +33,8 @@
                 services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
                 services.AddLogging((builder) => builder.SetMinimumLevel(LogLevel.Trace));
                 services.AddSingleton<MigrateService, MigrateService>();
+                services.AddSingleton<Repository, Repository>();
+
                 var serviceProvider = services.BuildServiceProvider();
 
                 var loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
